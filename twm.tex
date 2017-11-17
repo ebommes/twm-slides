@@ -1,0 +1,35 @@
+\documentclass{beamer}
+
+\input{tex/header.tex}
+
+\begin{document}
+
+    % title slide
+    \frame[plain]{
+        \titlepage
+    }
+
+    \input{content/sections/motivation.tex}
+    \input{content/sections/outline.tex}
+    \input{content/sections/obtaining_data.tex}
+    \input{content/sections/processing_data.tex}
+    \input{content/sections/sentiment_classification.tex}
+    %\input{content/sections/conclusion.tex}
+
+    % title slide
+    \frame[plain]{
+        \titlepage
+    }
+
+
+    \ifparty
+    \else
+    \input{content/sections/bibliography.tex}
+    \fi
+    \input{content/sections/appendix.tex}
+
+
+
+
+
+\end{document}

@@ -1,0 +1,85 @@
+ % -*- root: ../../twm.tex -*-
+
+\section{Sentiment Classification}
+
+\begin{frame}
+\frametitle{Evaluation Processing}
+\vspace{-2pt}
+{
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{.8em}
+\begin{lvbtab}{ht}
+\centering
+\begin{tabular}{l|S[table-format=3.0]S[table-format=3.0,detect-weight]|S[table-format=3.0,detect-weight]S[table-format=4.0,detect-weight]}
+  \hline
+\hline
+Pred& \multicolumn{2}{c|}{Unprocessed} & \multicolumn{2}{c}{Processed} \\
+
+\multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{}} &
+\multicolumn{1}{c}{-1}   &
+\multicolumn{1}{c|}{1}  &
+\multicolumn{1}{c}{-1}  &
+\multicolumn{1}{c}{1}   \\ 
+  \hline
+-1    & 677  & 723  & 725  &  675  \\
+\;1   & 498  & 902  & 307  & 1093  \\
+%Total & 1175 & 1625 & 1032 & 1768 & 2800 \\
+Accuracy & \multicolumn{2}{c|}{0.56} & \multicolumn{2}{c}{0.65}\\
+Recall & \multicolumn{1}{c}{0.58} & \multicolumn{1}{c|}{0.56} & \multicolumn{1}{c}{0.70} & \multicolumn{1}{c}{0.62}  \\
+Precision & \multicolumn{1}{c}{0.48} & \multicolumn{1}{c|}{0.64} & \multicolumn{1}{c}{0.52} & \multicolumn{1}{c}{0.78}  \\
+\hline
+\hline
+\end{tabular}
+%\caption{Confusion Matrix - Supervised Learning, estimated with Oversampling and evaluated on total Sample} 
+\end{lvbtab}
+}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Evaluation Pipeline}
+\vspace{-2pt}
+{
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{.8em}
+\begin{lvbtab}{ht}
+\centering
+\begin{tabular}{l|S[table-format=4.0]S[table-format=4.0,detect-weight]|S[table-format=4.0,detect-weight]S[table-format=4.0,detect-weight]}
+  \hline
+\hline
+Pred& \multicolumn{2}{c|}{Unprocessed} & \multicolumn{2}{c}{Processed} \\
+
+\multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{}} &
+\multicolumn{1}{c}{-1}   &
+\multicolumn{1}{c|}{1}  &
+\multicolumn{1}{c}{-1}  &
+\multicolumn{1}{c}{1}   \\ 
+  \hline
+-1    & 1304  & 96  & 1274  &  126  \\
+\;1   & 70  & 1330  & 94  & 1306  \\
+%Total & 1175 & 1625 & 1032 & 1768 & 2800 \\
+Accuracy & \multicolumn{2}{c|}{0.94} & \multicolumn{2}{c}{0.92}\\
+Precision & \multicolumn{1}{c}{0.93} & \multicolumn{1}{c|}{0.95} & \multicolumn{1}{c}{0.91} & \multicolumn{1}{c}{0.93}  \\
+Recall & \multicolumn{1}{c}{0.95} & \multicolumn{1}{c|}{0.93} & \multicolumn{1}{c}{0.93} & \multicolumn{1}{c}{0.91}  \\
+\hline
+\hline
+\end{tabular}
+%\caption{Confusion Matrix - Supervised Learning, estimated with Oversampling and evaluated on total Sample} 
+\end{lvbtab}
+}
+\end{frame}
+
+\section{Sentiment Classification}
+
+
+
+\begin{frame}
+    \frametitle{Sentiment Distribution}
+    \begin{figure}[htb]
+        \begin{center}
+            \includegraphics[scale=0.7]{img/figures/density}
+        \end{center}
+\caption{Estimated Densities of {\color{iseblue} Beer Ratings} and {\color{gray} Simulated Normal Distribution}}
+    \end{figure}
+
+\end{frame}

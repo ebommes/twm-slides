@@ -1,0 +1,154 @@
+\newcommand{\authora}[1]{\def\theauthora{#1}}
+\newcommand{\authorb}[1]{\def\theauthorb{#1}}
+\newcommand{\authorc}[1]{\def\theauthorc{#1}}
+
+\newcommand{\titlescale}{1.0}
+\newcommand{\leftcol}{0.6}
+\newcommand{\rightcol}{0.4}
+
+\titlegraphic{\hspace{30pt}\raisebox{22pt}{\pgfuseimage{logobig}}}
+
+% tick
+\newcommand{\cooltick}{\includegraphics[scale=0.25]{img/icons/checkmark}}
+\newcommand{\bomtick}{\ifcool \cooltick \else \checkmark \fi}
+
+% next line = with each \Section the pagecounter is reset
+\let\oldSection\section
+%\renewcommand{\section}[1]{\oldSection{#1} \setcounter{page}{1}}%
+\renewcommand\section[2][]{
+  \ifthenelse{\equal{#1}{intro}}{%
+      \oldSection[#2]{#2 \quad \bomtick}
+      \setcounter{page}{1}
+  }{
+      \oldSection{#2}\setcounter{page}{1}
+  }
+}
+
+
+% no bullets or triangles
+\useitemizeitemtemplate{$\boxdot$}
+\usesubitemizeitemtemplate{$\blacktriangleright$~}
+\usesubsubitemizeitemtemplate{\textbullet~}
+
+% colors enumerate and itemize
+\setbeamercolor{enumerate item}{fg=black}
+\setbeamercolor{itemize item}{fg=navyblue}
+\setbeamercolor{itemize subitem}{fg=navyblue}
+\setbeamercolor{itemize subsubitem}{fg=navyblue}
+
+% example environment in green
+\newcounter{mexample} % define a new counter for the examples
+\setcounter{mexample}{0} % initialize counter
+\renewenvironment{example}{\refstepcounter{mexample}\color{isegreen}Example \themexample \par\vspace*{0.5em}}{\vspace*{0.5em}} % redefine example
+%\renewenvironment<>{example}{\begin{originalexample}\color{isegreen}}{\end{originalexample}}
+
+\setbeamercolor*{example text}{fg=green!40!black}
+\setbeamercolor*{block body example}{fg=green!40!black}
+
+% footer
+\useheadtemplate{%
+\raisebox{-0.75cm}{\parbox{\textwidth}{%
+\footnotesize{\color{isegray}%
+\insertsectionhead\ \leavevmode\leaders\hrule height3.2pt depth-2.8pt\hfill\kern0pt\ \thesection-\thepage}% was \thesection-\thepage}
+}}}%
+
+\usefoottemplate{% control footer layout
+\raisebox{0.75cm}{\parbox{\textwidth}{\footnotesize{\color{isegray} \insertshorttitle\ \leavevmode\leaders\hrule height3.2pt depth-2.8pt\hfill\kern0pt\ \raisebox{-7pt}{\pgfuseimage{logosmall}}%
+}}}}%
+
+\usecaptiontemplate{% controls the layout of captions
+\insertcaptionname~\insertcaptionnumber:~\insertcaption% 
+}
+
+\usetitlepagetemplate{
+     \vbox{}
+     \begin{flushleft}
+       \Large\structure{{\color{isered}\scalebox{\titlescale}{\parbox{\linewidth}{\textbf{\inserttitle}}}}}%\scalebox{\titlescale}
+       \vskip1em\par
+     \end{flushleft}
+     \begin{flushleft}
+       \normalsize\theauthora\vskip0.5mm\par
+       \normalsize\theauthorb\vskip0.5mm\par
+       \normalsize\theauthorc\vskip2.5mm\par
+
+     \end{flushleft}
+\begin{columns}[onlytextwidth]
+     \begin{column}{0.7\textwidth}
+           {\normalsize\insertinstitute
+           {\color{iseblue}\href{\linka}{\linka}}
+	{\color{iseblue}\href{\linkb}{\linkb}}
+	{\color{iseblue}\href{\linkc}{\linkc}}}
+	 \end{column}
+     \begin{column}{0.3\textwidth}
+               \inserttitlegraphic % \cooltooltiptoggle{\textcolor{white}{$\boxdot$}}
+     \end{column}
+\end{columns}
+}
+
+\useframetitletemplate{%
+    \vspace{5pt}
+    \vbox{\hsize=12cm \Large\structure{\color{isered}\textbf{\strut\insertframetitle\strut}} }
+    \par
+}
+
+\ifparty
+\let\oldframetitle\frametitle
+\renewcommand{\frametitle}[1]{
+    \oldframetitle{\partytext{#1}}
+}
+
+\usetitlepagetemplate{
+     \vbox{}
+     \begin{flushleft}
+       \Large\structure{{\scalebox{\titlescale}{\parbox{\linewidth}{\textbf{\inserttitle}}}}}%\scalebox{\titlescale}
+       \vskip1em\par
+     \end{flushleft}
+     \begin{flushleft}
+       \normalsize\theauthora\vskip0.5mm\par
+       \normalsize\theauthorb\vskip0.5mm\par
+       \normalsize\theauthorc\vskip2.5mm\par
+
+     \end{flushleft}
+\begin{columns}[onlytextwidth]
+     \begin{column}{0.7\textwidth}
+           {\normalsize\insertinstitute
+           {\color{iseblue}\href{\linka}{\linka}}
+    {\color{iseblue}\href{\linkb}{\linkb}}
+    {\color{iseblue}\href{\linkc}{\linkc}}}
+     \end{column}
+     \begin{column}{0.3\textwidth}
+               \inserttitlegraphic % \cooltooltiptoggle{\textcolor{white}{$\boxdot$}}
+     \end{column}
+\end{columns}
+}
+
+
+\useframetitletemplate{%
+    \vspace{5pt}
+    \vbox{\hsize=12cm \Large\structure{\textbf{\strut\insertframetitle\strut}} }
+    \par
+}
+\fi
+
+
+%no navigationbar
+\setbeamertemplate{navigation symbols}{} 
+
+\newcommand{\weblink}[2]{
+	\href{#1}{\textcolor{linkblue}{#2}}}
+
+\newcommand{\pointprog}[1]{
+	\href{\apssplace/#1.html}{\includegraphics[height=.9em]{qletlogo} \color{magenta}\texttt{#1.xpl}}}
+	
+	\newcommand{\myprog}[2]{
+	\href{#1}{\includegraphics[height=.9em]{qletlogo} \color{magenta}\texttt{#2}}}
+	
+% different beamerbutton
+\setbeamertemplate{button}{\tikz[baseline=-1.2ex]
+  \node[rectangle, inner xsep=4pt, inner ysep=2pt, draw=black,
+  fill=bombtn, text=black, rounded corners=1pt, minimum height = 0.35cm]  {\color{bomtxt}\insertbuttontext};}
+
+% framebreaks no title on continuation
+\makeatletter
+\setbeamertemplate{frametitle continuation}{\gdef\beamer@frametitle{}}
+\makeatother

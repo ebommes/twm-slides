@@ -1,0 +1,275 @@
+ % -*- root: ../../fss.tex -*-
+\section{Sentiment Projection}
+\label{lab:projection}
+
+\begin{frame}
+    \frametitle{Lexicon-based Sentiment}
+    Consider document $i$, positive sentiment $Pos_i$, positive lexicon entries $W_j$ ($j = 1, \ldots, J$) and count frequency of those entries $w_j$:
+
+    \begin{equation}
+        \textcolor{iseblue}{Pos_i = n^{-1}_i \sum_{j=1}^J{  \operatorname{\mathbf{I}}\big( W_j \in L \big) w_{j} }}
+    \end{equation}
+
+    \vspace{20pt}
+    with $n_i$: number of words in document $i$ (e.g. sentence) \\
+    \vspace{10pt}
+    Equivalent calculation of negative sentiment $Neg_i$
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Sentence-level Polarity}
+
+    \begin{equation}
+        {\color{iseblue}
+        Pol_i = 
+        \begin{cases}
+             \;\;\,1,& \text{if }  Pos_i > Neg_i\\
+             \;\;\,0,& \text{if }  Pos_i = Neg_i\\
+            -      1,& \text{if }  Pos_i < Neg_i\\
+        \end{cases}
+        }
+    \end{equation}
+    for sentence $i$.
+
+    \vspace{10pt}
+    \begin{itemize}
+        \item Measure sentiment on sentence-level
+        %\item Unsupervised projection comparable with supervised projection 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Regularized Linear Models (RLM)}
+    \label{regularizedmodels}
+
+    \begin{itemize}
+        \item Training data $(X_1, y_1) \ldots (X_n, y_n)$ with $X_i \in \mathbb{R}^p$ and $y_i \in \{-1, 1\}$
+        \item Linear scoring function $s(X) = \beta^{\top}X$ with $\beta \in \mathbb{R}^p$
+    \end{itemize}
+
+    \begin{flushright}
+        \hyperlink{rlmexample}{\beamerbutton{Example}}
+    \end{flushright}
+
+    Regularized training error:
+    \begin{equation}
+        \textcolor{iseblue}{n^{-1} \sum_{i=1}^n \; \; \begingroup \color{iseblue!90} 
+        \underbrace{ {\color{iseblue}L\{y_i, s(X)\}}}_\text{\hyperlink{loss}{\beamerbutton{Loss Function}}}
+        \endgroup \quad + \quad \lambda \begingroup \color{iseblue!90} \underbrace{\color{iseblue} R(\beta)}_{ \text{\makebox[0pt]{\hyperlink{regterm}{\beamerbutton{Regularization Term}}}} } \endgroup  }
+    \end{equation}
+
+    with hyperparameter $\lambda \geq 0$.
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{RLM Estimation}
+    \label{rlm2}
+
+    \begin{itemize}
+        \item Optimize via Stochastic Gradient Descent \hyperlink{sgd}{\beamerbutton{More}}
+        \item 5-fold cross validation \hyperlink{crossval}{\beamerbutton{More}}
+        \item Oversampling  \hyperlink{oversampling}{\beamerbutton{More}}
+        \item Choice of: $L(\cdot), R(\cdot), \lambda$, $X$ ($n$-gram range, features) $\dots$
+        \item Three categories: one vs. all sub-models
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Model Accuracy - Polarity}
+    Supervised Learning
+    \begin{itemize}
+        \item Chosen model: Hinge loss, L1 norm, $\lambda = 0.0001$, ...
+    \end{itemize}
+
+    \vspace{-5pt}
+    \storestyleof{itemize}
+    \begin{listliketab}
+        \begin{tabular}{Lll}
+            \usebeamertemplate***{itemize item} & Mean accuracy (oversampling):     & 0.80 \\
+            \usebeamertemplate***{itemize item} & Mean accuracy (normal sample):    & 0.82 \\
+        \end{tabular}
+    \end{listliketab}
+
+    \vspace{15pt}
+    Lexicon-based \\
+    \begin{listliketab}
+        \begin{tabular}{Lll}
+            \usebeamertemplate***{itemize item} & Mean accuracy BL:     & 0.58 \\
+            \usebeamertemplate***{itemize item} & Mean accuracy LM:     & 0.64 \\
+        \end{tabular}
+    \end{listliketab}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Evaluation BL}
+
+    {
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{.8em}
+    \begin{lvbtab}{ht}
+        \centering
+                \begin{tabular}{l|S[table-format=3.0]S[table-format=4.0,detect-weight]S[table-format=3.0,detect-weight]|S[table-format=4.0,detect-weight]}
+                \hline
+                \hline
+                \multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{Pred}} &
+                \multicolumn{1}{c}{-1}   &
+                \multicolumn{1}{c}{0}  &
+                \multicolumn{1}{c|}{1} &
+                \multicolumn{1}{c}{Total}  \\ 
+                \hline
+                -1   & \bfseries 214 & 268              & 32            & 514 \\ 
+                \;0  & 203           & \bfseries  1,786  & 546          & 2535  \\ 
+                \;1   & 89            & 627              & \bfseries 452 & 1168  \\ 
+                \hline
+                Total & 506           & 2681             & 1030          & 4217 \\ 
+                \hline
+                \hline
+        \end{tabular}
+        \caption{Confusion Matrix - BL Lexicon
+        \quantlet{TXTfpblexical}{https://github.com/QuantLet/TXT/tree/master/TXTfpblexical} \\} 
+    \end{lvbtab}
+    }
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Evaluation LM}
+    {
+    \renewcommand{\arraystretch}{1.5}
+    \setlength{\tabcolsep}{.8em}
+    \begin{lvbtab}{ht}
+    \centering
+    \begin{tabular}{l|S[table-format=3.0]S[table-format=4.0,detect-weight]S[table-format=3.0,detect-weight]|S[table-format=4.0,detect-weight]}
+      \hline
+    \hline
+    \multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{Pred}} &
+    \multicolumn{1}{c}{-1}   &
+    \multicolumn{1}{c}{0}  &
+    \multicolumn{1}{c|}{1}  &
+    \multicolumn{1}{c}{Total}  \\ 
+      \hline
+    -1   & \bfseries 213 & 289              & 12            & 514 \\ 
+    \;0  & 200           & \bfseries  2,187 & 148           & 2535  \\ 
+    \;1   & 111           & 772              & \bfseries 285 & 1168  \\ 
+    \hline
+    Total & 524           & 3248             & 445           & 4217 \\ 
+       \hline
+    \hline
+    \end{tabular}
+    \caption{Confusion Matrix - LM Lexicon  
+        \quantlet{TXTfpblexical}{https://github.com/QuantLet/TXT/tree/master/TXTfpblexical} \\
+        } 
+    \end{lvbtab}
+    }
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Evaluation SM}
+\vspace{-2pt}
+\label{confusion_supervised}
+{
+\renewcommand{\arraystretch}{1.5}
+\setlength{\tabcolsep}{.8em}
+\begin{lvbtab}{ht}
+\centering
+\begin{tabular}{l|S[table-format=3.0]S[table-format=4.0,detect-weight]S[table-format=3.0,detect-weight]|S[table-format=4.0,detect-weight]}
+  \hline
+\hline
+\multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{Pred}} &
+\multicolumn{1}{c}{-1}   &
+\multicolumn{1}{c}{0}  &
+\multicolumn{1}{c|}{1}  &
+\multicolumn{1}{c}{Total}  \\ 
+  \hline
+-1   & \bfseries 389 & 67              & 58            & 514 \\ 
+\;0  & 96              & \bfseries  2,134 & 305           & 2535  \\ 
+\;1   & 105             & 198              & \bfseries 916 & 1168  \\ 
+\hline
+Total & 539            & 2399             & 1279           & 4217 \\ 
+   \hline
+\hline
+\end{tabular}
+\caption{Confusion Matrix - Supervised Learning, estimated with Oversampling and evaluated on total Sample
+\quantlet{TXTfpbsupervised}{https://github.com/QuantLet/TXT/tree/master/TXTfpbsupervised}
+} 
+\end{lvbtab}
+}
+\vspace{-18pt}
+\begin{flushright}
+        \hyperlink{confusion_oversampling}{\beamerbutton{Confusion Matrix with Oversampling}}
+        \hyperlink{lambda_svm}{\beamerbutton{Choice of $\lambda$}}
+        \hyperlink{confusion_logistic}{\beamerbutton{Results Logistic Loss}}
+\end{flushright}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Fractions}
+    \begin{itemize}
+        \item Aggregation of sentence-level sentiment
+    \end{itemize}
+    \vspace{10pt}
+    \small
+    \begin{equation}
+    {\color{iseblue}
+    \begin{aligned}
+        PF =&
+        \textstyle n^{-1} \sum_{j=1}^n{ \operatorname{\mathbf{I}}\big( Pol_j = 1 \big) }\\
+        PN =&
+        \textstyle n^{-1} \sum_{j=1}^n{\operatorname{\mathbf{I}}\big( Pol_j = -1 \big) }
+    \end{aligned}
+    }
+    \end{equation} \\
+
+    \vspace{10pt}
+    \normalsize
+    by {\color{iseblue} Zhang et al (2016)} with $j = 1, \dots, n$ sentences in document.
+    \vspace{20pt}
+
+    \begin{itemize}
+        \item $PF_{i, t}$ and $PN_{i, t}$ account for fractions of company $i$ on day $t$
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Bullishness}
+    \vspace{15pt}
+    \small
+    \begin{equation}
+        {\color{iseblue}
+        B = 
+        \log \{(1 + PF) / (1 + PN)\}
+        }
+    \end{equation} \\
+
+    \vspace{10pt}
+    \normalsize
+    by {\color{iseblue} Antweiler and Frank (2004)}.
+    \vspace{20pt}
+
+    \begin{itemize}
+        \item $B_{i, t}$ accounts for bullishness of company $i$ on day $t$
+        \item Consider $|B_{i, t}|$ and $BN_{i, t} = \operatorname{\mathbf{I}}\big( B_{i, t} < 0 \big) B_{i, t} $
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Disagreement}
+    \vspace{15pt}
+    \small
+    \begin{equation}
+        {\color{iseblue}
+        D = \{1 / (1 + |PF - PN|)\}
+        }
+    \end{equation}
+    \begin{itemize}
+        \item Disagreement on status of a company
+    \end{itemize}
+\end{frame}

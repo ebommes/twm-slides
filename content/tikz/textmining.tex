@@ -1,0 +1,60 @@
+% -*- root: ../../fss.tex -*-
+ \label{flowchart}
+\begin{tikzpicture}[node distance=2cm]
+\node (articles1) [doc] {Articles};
+\node (sentproj) [standard, right of=articles1, xshift=1.5cm] {Textual Projection};
+\node (sent) [doc, right of=sentproj, xshift=1.8cm] {Sentiment};
+
+\draw [arrow] (articles1) -- (sentproj);
+\draw [arrow] (sentproj) -- (sent);
+
+\node[bb1, below of=sentproj, yshift=0.7cm, xshift=0.7cm](outbox)
+{
+
+    \begin{minipage}{1.5cm}
+    \center
+    \begin{tikzpicture}[node distance=0.55cm]
+    \node (lex) [box] {\scriptsize Lexical};
+    \node (ml) [box, below of=lex] {\scriptsize Model};
+    \end{tikzpicture}
+    \end{minipage}
+};
+\coordinate (A) at (3,-0.35);
+\coordinate (B) at (3.3,-1.4);
+
+\draw [line width=0.25mm] (A) |- (B);
+
+\node (articles2) [doc, below of=articles1, yshift=-1cm] {Articles};
+\node (dimred) [standard, right of=articles2, xshift=1.5cm] {Dimension Reduction};
+\node (lattop) [doc, right of=dimred, xshift=2cm] {Latent Topics};
+
+\draw [arrow] (articles2) -- (dimred);
+\draw [arrow] (dimred) -- (lattop);
+
+\node[bb1, below of=dimred, yshift=0.7cm, xshift=0.7cm](outbox2)
+{
+
+    \begin{minipage}{1.5cm}
+    \center
+    \begin{tikzpicture}[node distance=0.55cm]
+    \node (lsa) [box] {\scriptsize LSA};
+    \node (lda) [box, below of=lsa] {\scriptsize LDA};
+    \end{tikzpicture}
+    \end{minipage}
+};
+
+\coordinate (C) at (3,-3.35);
+\coordinate (D) at (3.3,-4.3);
+
+\draw [line width=0.25mm] (C) |- (D);
+
+\node (articles3) [doc, below of=articles2, yshift=-1cm] {Articles};
+\node (dimsim) [standard, right of=articles3, xshift=1.5cm] {Similarity Measure};
+\node (herding) [doc, right of=dimsim, xshift=2cm] {Herding Behavior};
+
+\draw [arrow] (articles3) -- (dimsim);
+\draw [arrow] (dimsim) -- (herding);
+
+
+%\draw [line width=0.25mm] (sentproj) -- (outbox);
+\end{tikzpicture}

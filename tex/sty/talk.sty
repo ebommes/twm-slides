@@ -1,0 +1,144 @@
+% university logo
+% talk logo
+\ifparty
+\pgfdeclareimage[height=2cm]{logobig}{img/logos/party_hu}
+\pgfdeclareimage[height=0.7cm]{logosmall}{img/logos/party}
+\else
+\pgfdeclareimage[height=2cm]{logobig}{img/logos/hu}
+\pgfdeclareimage[height=0.7cm]{logosmall}{img/logos/beer.png}
+\fi
+
+% scale title
+\renewcommand{\titlescale}{1.0}
+
+% scale of columns
+\renewcommand{\titlescale}{1.0}
+\renewcommand{\leftcol}{0.6}
+
+% title and short title
+\title[Text Words Meaning]{Texts Words Meaning}
+
+% authors
+\authora{Elisabeth Bommes}
+\authorb{}
+\authorc{}
+
+% internet addresses
+\def\linka{http://lvb.wiwi.hu-berlin.de}
+\def\linkb{}
+\def\linkc{}
+
+% institute
+\institute{\ifcool \small \fi mbr targeting\\
+Ladislaus von Bortkiewicz Chair of Statistics \\
+Humboldt-Universität zu Berlin \\}
+
+% start pdf in full screen
+\hypersetup{pdfpagemode=FullScreen}
+
+
+% setup of packages
+
+% caption
+\captionsetup{belowskip = 12pt, aboveskip = 4pt}
+\setlength{\parindent}{0pt}
+
+% hyperlink color
+\hypersetup{
+    linkcolor = linkblue,
+    citecolor = iseblue,
+    filecolor = linkblue
+}
+
+% lvb table
+\newenvironment{lvbtab}[1]{
+    \begin{table}[#1]
+        \sisetup{
+            detect-all = true,
+            table-number-alignment = center,
+            add-decimal-zero=false,
+            round-mode=off,
+            group-separator = {,},
+            group-four-digits = true
+        }
+        \centering
+    }{
+\end{table}
+}
+
+% colored table
+\newcolumntype{?}{!{\color{bombg}{\vrule width 4pt}}}
+\newcommand{\bhrule}{\noalign{ {\color{bombg} \hrule height 4pt  width 0.2pt}} }
+\newcommand{\sector}[1]{\multicolumn{1}{l}{\hspace{-2pt} #1}}
+\newcolumntype{C}{>{\lower.2ex\hbox to 2ex\bgroup\hss}c<{\hss\egroup}}
+\newcommand\crule[3][black]{\textcolor{#1}{\rule{#2}{#3}}}
+
+% tikz
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+% tagger picture
+\usetikzlibrary{positioning,calc}
+
+\newcommand{\circleplus}[1]{%
+    \raisebox{-1.5pt}{%
+        \tikz{%
+            \node (#1) [minimum size=.4cm, inner sep=0pt] {%
+                % \footnotesize{\color{torstred}{$+$}}%
+\Large{\color{torstgreen}{\smiley{}}}%
+            };
+        }
+    }
+}
+
+\newcommand{\circleminus}[1]{%
+    \raisebox{-1.5pt}{%
+        \tikz{%
+            \node (#1) [minimum size=.4cm, inner sep=0pt] {%
+\Large{\color{torstred}{\frownie{}}}%
+            };
+        }
+    }
+}
+
+% Define some custom colors
+\definecolor{torstgreen}{rgb}{0, .5, 0}
+\definecolor{torstgrey}{rgb}{.25, .25, .25}
+\definecolor{torstred}{rgb}{.75, 0, 0}
+
+%power of words
+\tikzstyle{bb1} = [minimum height=1cm, minimum width=1cm,draw,rounded corners, rectangle]
+
+%flowchart
+\tikzstyle{standard} = [rectangle, minimum width=1.5cm, minimum height=0.7cm,text centered, draw=black, fill=gray!10]
+\tikzstyle{doc} = [trapezium, trapezium left angle=85, trapezium right angle=95, minimum width=1cm, minimum height=0.7cm, text centered, draw=black, fill=gray!20, rounded corners]
+\tikzstyle{bigbox} = [minimum height=2cm, minimum width=1cm,draw,rounded corners, rectangle]
+\tikzstyle{bigbox2} = [minimum height=1cm, minimum width=1cm,draw,rounded corners, rectangle]
+\tikzstyle{box} = [rectangle, minimum height=0.1cm, fill=gray!08, minimum width=1.5cm,draw,rounded corners, draw]
+\tikzstyle{box2} = [rectangle, minimum height=0.1cm, fill=gray!08, minimum width=1.5cm,draw,rounded corners, draw]
+\tikzstyle{box3} = [minimum height=0.1cm, minimum width=0.1cm, draw=white]
+
+% crossvalidation
+\tikzstyle{textbox_cv} = [rectangle, minimum width=1.5cm, minimum height=0.5cm,text centered, draw=white, fill=white]
+\tikzstyle{bigbox_cv} = [minimum height=2cm, minimum width=1cm, rectangle]
+\tikzstyle{box_cv} = [rectangle, minimum height=1cm, minimum width=1.5cm, draw]
+\tikzstyle{box_cv2} = [rectangle, minimum height=3cm, minimum width=1.5cm, draw]
+\tikzstyle{box_cv3} = [rectangle, minimum height=2cm, minimum width=1.5cm, draw]
+
+% outline
+% black font
+\setbeamercolor{section in toc}{fg=bomtxt}
+
+% numbered items
+\setbeamertemplate{section in toc}[sections numbered]
+
+% remove spacing between items
+\makeatletter
+\patchcmd{\beamer@sectionintoc}
+  {\vfill}
+  {\vskip\itemsep}
+  {}
+  {}
+\makeatother
+
+\setcounter{tocdepth}{1}

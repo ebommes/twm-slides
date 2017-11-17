@@ -1,0 +1,61 @@
+\newcounter{rainbowiter}
+\setcounter{rainbowiter}{1}
+
+\usepackage{stackengine}
+\usepackage{xifthen}
+\usepackage{xcolor}
+
+%%% switch construction based on http://tex.stackexchange.com/a/187710
+\newcommand{\ifequals}[3]{\ifthenelse{\equal{#1}{#2}}{#3}{}}
+\newcommand{\case}[2]{#1 #2}
+\newenvironment{switch}[1]{\renewcommand{\case}{\ifequals{#1}}}{}
+
+
+%%% construction based on http://tex.stackexchange.com/a/253212
+\newcommand\partytext[2][c]{\if w#1\worditeratehelper#2 \relax\relax\else
+  \chariteratehelpA#2 \relax\relax\fi}
+
+\def\chariteratehelpA#1 #2\relax{%
+  \chariteratehelpB#1\relax\relax%
+  \ifx\relax#2\else\ \chariteratehelpA#2\relax\fi
+}
+
+\def\chariteratehelpB#1#2\relax{%
+  \charop{#1}%
+  \ifx\relax#2\else
+    \chariteratehelpB#2\relax%
+  \fi
+}
+
+\def\worditeratehelper#1 #2\relax{%
+  \wordop{#1}%
+  \ifx\relax#2\else\ \worditeratehelper#2\relax\fi%
+}
+
+\def\useanchorwidth{T}%
+\def\stacktype{L}%
+\def\stackalignment{c}%
+
+\newcommand\charop[1]{%
+  \rainbowcol{\therainbowiter}{#1}%
+  \ifthenelse{\equal{\therainbowiter}{7}}{%
+      \setcounter{rainbowiter}{1}%
+  }{%
+      \stepcounter{rainbowiter}%
+  }%
+}
+
+\def\wordop#1{#1}
+
+\newcommand{\rainbowcol}[2]{%
+   \begin{switch}{#1}%
+    \case{1}{\definecolor{currentcol}{RGB}{148,   0, 211}}%
+    \case{2}{\definecolor{currentcol}{RGB}{ 75,   0, 130}}%
+    \case{3}{\definecolor{currentcol}{RGB}{  0,   0, 255}}%
+    \case{4}{\definecolor{currentcol}{RGB}{  0, 177,  89}}%
+    \case{5}{\definecolor{currentcol}{RGB}{255, 196,  37}}%
+    \case{6}{\definecolor{currentcol}{RGB}{255, 127,   0}}%
+    \case{7}{\definecolor{currentcol}{RGB}{255,   0,   0}}%
+    {\color{currentcol}#2}%
+    \end{switch}%
+} 

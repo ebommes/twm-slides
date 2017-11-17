@@ -1,0 +1,26 @@
+% -*- root: ../../fss.tex -*-
+% Remove slide number for outline
+\section{}
+\useheadtemplate{
+    \raisebox{-0.75cm}{\parbox{\textwidth}{
+            \footnotesize{\color{isegray}
+                \insertsection\ \leavevmode\leaders\hrule height3.2pt depth-2.8pt\hfill\kern0pt\ }}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frame{
+\frametitle{Outline}
+
+%%% <TORST> %%%
+\hfill\parbox{.97\textwidth}{
+\tableofcontents %[hideallsubsections]
+}
+%%% </TORST> %%%
+
+}
+
+% Use slide number after outline
+\useheadtemplate{
+    \raisebox{-0.75cm}{\parbox{\textwidth}{
+            \footnotesize{\color{isegray}
+                \insertsection\ \leavevmode\leaders\hrule height3.2pt depth-2.8pt\hfill\kern0pt\ \thesection-\thepage}}}}
+\setcounter{section}{1}

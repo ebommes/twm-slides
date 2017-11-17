@@ -1,0 +1,50 @@
+% some definitions of colors
+% require the xcolor-package
+
+\xdefinecolor{isered}{rgb}{0.9,0,0}
+\xdefinecolor{iseblue}{RGB}{25,89,190}
+\xdefinecolor{isegreen}{rgb}{0,0.4,0}
+\xdefinecolor{isegray}{rgb}{0.5,0.5,0.5}
+\xdefinecolor{darkgreen}{rgb}{0,.75,0}
+\xdefinecolor{linkblue}{RGB}{0,55,108}
+\xdefinecolor{navyblue}{RGB}{0,55,108}
+
+\xdefinecolor{hublue}{RGB}{0,55,108}
+\xdefinecolor{hured}{RGB}{138,15,20}
+\xdefinecolor{hugreen}{RGB}{0,87,44}
+\xdefinecolor{husandy}{RGB}{210,192,103}
+\xdefinecolor{husage}{RGB}{209,209,194}
+\xdefinecolor{huslate}{RGB}{189,202,211}
+
+% color definitions for listings:
+\definecolor{hellgelb}{rgb}{1,1,0.7}
+\definecolor{colKeys}{rgb}{0,0.35,0.62}
+\definecolor{colIdentifier}{rgb}{0,0,0}
+\definecolor{colComments}{rgb}{1,0,0}
+\definecolor{colString}{rgb}{0,0.5,0}
+
+% colored table
+\newcommand{\cone}{\cellcolor{isered!90}}
+\newcommand{\ctwo}{\cellcolor{isered!65}}
+\newcommand{\cthree}{\cellcolor{isered!30}}
+
+\newcommand{\bone}{\cellcolor{iseblue!90}}
+\newcommand{\btwo}{\cellcolor{iseblue!65}}
+\newcommand{\bthree}{\cellcolor{iseblue!30}}
+
+% plots
+\definecolor{cmegreen}{HTML}{33a02c}
+\definecolor{cmeorang}{HTML}{FF7F00}
+\definecolor{cmepink}{HTML}{A80BA7}
+
+
+% background and text
+\ifcool
+    \colorlet{bombg}{gray!10!}
+    \colorlet{bombtn}{iseblue!10!}
+    \colorlet{bomtxt}{black!90!}
+\else
+    \colorlet{bombg}{white}
+    \colorlet{bomtxt}{black}
+    \colorlet{bombtn}{black!5!}
+\fi

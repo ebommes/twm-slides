@@ -1,0 +1,97 @@
+ % -*- root: ../fss.tex -*-
+\newif\ifcool
+\coolfalse
+
+\newif\ifparty
+\partyfalse
+
+\ifcool
+    % xelatex
+    \usefonttheme{professionalfonts}
+    \usepackage{fontspec}
+    \defaultfontfeatures{LetterSpace=5}
+    \setsansfont[UprightFont={HelveticaNeue-Thin},
+                ItalicFont = HelveticaNeue-LightItalic,
+                BoldFont = HelveticaNeue-Light,
+                BoldItalicFont = HelveticaNeue-UltraLightItalic]{Helvetica Neue}
+
+    \setmonofont{Courier}
+    \setbeamerfont{note page}{family*=pplx,size=\footnotesize}
+
+    \setbeamercolor{background canvas}{bg=gray!10}
+    \setbeamercolor{normal text}{fg=black!90}
+    \usepackage{mathtools}
+    \usepackage{unicode-math}
+    \setmathfont{Latin Modern Math}
+\else
+    % latex
+    \usepackage[utf8]{inputenc}
+    \usepackage[T1]{fontenc}
+    \usepackage{cooltooltips}
+\fi
+
+\ifparty
+\input{tex/party_header.tex}
+\fi
+
+% elementary packages:
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{eso-pic}
+\usepackage{mathrsfs}
+\usepackage{url}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+% additional packages
+\usepackage{bbm}
+\usepackage{tikz}
+\usepackage{caption}
+
+% tables
+\usepackage{siunitx}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{rotating}
+
+% lists
+\usepackage{listliketab}
+
+% outline
+% ifthen required for custom section command
+\usepackage{ifthen}
+
+% etoolbox provides patchcmd
+\usepackage{etoolbox}
+
+% ise packages:
+\usepackage{tex/sty/colordef}
+\usepackage{tex/sty/beamerdefs}
+\usepackage{tex/sty/lvbdefs}
+\usepackage{tex/sty/lvblisting}
+
+% own style files
+\usepackage{tex/sty/talk}
+\usepackage{tex/sty/kbordermatrix}
+
+% smileys
+\usepackage{wasysym}
+
+\usepackage{setspace}
+
+\newcommand*{\mybox}[1]{\framebox{#1}}
+
+% quotes
+\usepackage[style=british]{csquotes}
+
+% figure alignment
+\usepackage[export]{adjustbox}
+

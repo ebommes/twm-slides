@@ -1,0 +1,79 @@
+\scalebox{0.7}{
+    \begin{tikzpicture}[remember picture]
+
+    \node (box.left) [align=left,
+                     draw,
+                     minimum width=8cm,
+                     minimum height=5cm]%
+    {
+            % First line
+            O gentle doves, the lentils that in ashes\\
+            \hspace{.8cm}\circleplus{plus1a}\\
+            % Second line
+            lie come and pick up for me!\\
+            \\
+            % Third line
+            The good must be put in the dish,\\
+            \hspace{.8cm}\circleplus{plus2a}\\
+            % Fourth line
+            the bad you may eat if you wish.\\
+            \hspace{.8cm}\circleminus{minus1a}
+    };
+
+    \node (box.up) [draw,
+                  minimum width=2.25cm,
+                  minimum height=2.25cm,
+                  yshift=0.25cm,
+                  right of=box.left,
+                  node distance=5.75cm,
+                  anchor=south,
+                  font=\fontsize{50}{0}\selectfont]%
+    {
+        \begin{minipage}{.15cm}
+        % As long as we don't fix this properly,
+        % blank new lines are required around \vspace
+            \circleplus{plus1b}
+
+            \vspace{.15cm}
+
+            \circleplus{plus2b}
+        \end{minipage}
+
+        \begin{minipage}{.75cm}
+            \centerline{\color{torstgreen}{{\fontfamily{ugq}\selectfont 2}}}
+        \end{minipage}
+
+        \begin{minipage}{.15cm}
+        \end{minipage}
+    };
+
+    \node (box.down) [draw,
+                  minimum width=2.25cm,
+                  minimum height=2.25cm,
+                  right of=box.left,
+                  node distance=5.75cm,
+                  anchor=north,
+                  yshift=-0.25cm,
+                  font=\fontsize{50}{0}\selectfont]%
+    {
+        % As long as we don't fix this properly,
+        % blank new lines are required around \vspace
+        \begin{minipage}{.15cm}
+            \circleminus{minus1b}
+        \end{minipage}
+
+        \begin{minipage}{.75cm}
+            \centerline{\color{torstred}{{\fontfamily{ugq}\selectfont 1}}}
+        \end{minipage}
+
+        \begin{minipage}{.15cm}
+        \end{minipage}
+    };
+
+    % Connecting lines between every pair of plus/minus signs
+    \draw [dashed, torstgrey, thin] (plus1a) -- ($ (plus1a) + (5.5,0) $) -- (plus1b);
+    \draw [dashed, torstgrey, thin] (plus2a) -- ($ (plus2a)   + (5.5,0) $) -- (plus2b);
+    \draw [dashed, torstgrey, thin] (minus1a) -- ($ (minus1a) + (5.5,0) $) -- (minus1b);
+
+    \end{tikzpicture}
+}

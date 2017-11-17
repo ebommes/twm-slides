@@ -1,0 +1,233 @@
+ % -*- root: ../../fss.tex -*-
+\section{Panel Regression}
+
+\begin{frame}
+    \frametitle{Sectors as Panels}
+    \label{panel}
+    \small
+    \begin{eqnarray}\label{eq:PanelVola}
+    \color{iseblue}
+    \log \sigma_{i, t} =& \color{iseblue}
+    \alpha +   \beta_{1}|B_{i, t}| + 
+    \beta_{2}BN_{i, t} + 
+    \beta_{3}^\top X_{i,t} +
+    \gamma_{i}+\varepsilon_{i,t}\\[\baselineskip]
+    %
+    \color{iseblue}R_{i, t} =& \color{iseblue}    \alpha  + 
+    \beta_{1}B_{i, t} + 
+    \beta_{2}^\top X_{i,t} +
+    \gamma_{i}+\varepsilon_{i,t}\label{eq:PanelReturns}\vspace{10pt}
+    \end{eqnarray}
+    
+    for stock $i$ on day $t$ with separate estimation of (\ref{eq:PanelVola}) and (\ref{eq:PanelReturns}). \\[\baselineskip]
+     $X_{i,t}$ - control variables \hyperlink{control}{\beamerbutton{More Information}}\\
+     $\gamma_{i} \: \: \:$ - company specific fixed effect satisfying $\sum_{i}\gamma_i=0$
+\end{frame}
+
+
+\begin{frame}
+    \frametitle{Stock Reaction Indicators}
+    \label{GK2}
+    \textcolor{isered}{Range-based measure of volatility} by {\color{iseblue}Garman and Klass (1980)} \\
+    \vspace{3pt}
+    \begin{itemize}
+        \item Notation: $\color{iseblue}\sigma_{i,t} \quad $ \hyperlink{GK}{\beamerbutton{Computation}}
+        %\item Use $\color{iseblue}\log \sigma_{i,t}$
+        \item Based on open-high-low-close prices
+        \item Equivalent results to realized volatility 
+    \end{itemize}
+    \vspace{10pt} \textcolor{isered}{Returns}
+    \begin{equation}
+    \label{eq:ret}
+    \color{iseblue} R_{i,t} = \log(P_{i,t}^C) - \log(P_{i,t-1}^C) \color{black}
+    \end{equation}
+    with $P_{i,t}^C$ as closing price of stock $i$ on day $t$
+\end{frame}
+
+
+\begin{frame}
+\label{gkvola}
+\frametitle{Contemporaneous - Volatility - Fractions}
+\setlength{\abovecaptionskip}{15pt}
+\begin{table}
+\center
+\scalebox{0.95}{
+\renewcommand{\arraystretch}{1.3}
+\hspace*{-30pt}
+\begin{tabular}{l?l?C?C?C?C?C?C?C?C?} 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \sector{CD} & \sector{CS} & \sector{EN} & \sector{FI} & \sector{HC} & \sector{IN} & \sector{IT} & \sector{MA} \\  
+
+\multirow{3}{*}{\begin{sideways}$PF_{i, t}$\end{sideways}} & BL &  &  & \cthree & \cthree & \cone &  &  & \ctwo \\ \bhrule
+   & LM &  & \ctwo & \cone & \cone & \cone &  &  & \cone \\  \bhrule
+   & SM & \cone & \cone & \cone & \cone & \cone & \ctwo & \ctwo & \cthree \\ \bhrule \bhrule
+
+\multirow{3}{*}{\begin{sideways}$PN_{i, t} $\end{sideways}} & BL & \cone & \cone & \cone & \cone & \cone & \cone & \cone & \cone \\ \bhrule
+   & LM & \cone & \cone & \cone & \cone & \cone & \cone & \cone & \cone  \\ \bhrule
+   & SM & \cone & \cone & \cone & \cone & \cone & \cone & \cone & \cone \\ \bhrule
+\end{tabular}
+}
+\vspace{-5pt}
+\caption{Significance codes \crule[isered!90]{0.6\baselineskip}{0.6\baselineskip} 0.01 \crule[isered!65]{0.6\baselineskip}{0.6\baselineskip} 0.05 \crule[isered!30]{0.6\baselineskip}{0.6\baselineskip} 0.1}
+\end{table}
+\vspace{-20pt}
+    \begin{flushright}
+        \hyperlink{Abbreviation}{\beamerbutton{Abbreviations}}                                
+    \end{flushright}
+\end{frame}
+
+
+\begin{frame}
+\label{gkvola2}
+\frametitle{Contemporaneous - Volatility - Bullishness}
+\setlength{\abovecaptionskip}{15pt}
+\begin{table}
+\center
+\scalebox{0.95}{
+\renewcommand{\arraystretch}{1.3}
+\hspace*{-30pt}
+\begin{tabular}{l?l?C?C?C?C?C?C?C?C?} 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \sector{CD} & \sector{CS} & \sector{EN} & \sector{FI} & \sector{HC} & \sector{IN} & \sector{IT} & \sector{MA} \\  
+
+\multirow{3}{*}{\begin{sideways}$|B_{i, t}|$\end{sideways}} & BL &  &  &  &  & \cone &  &  & \cone \\ \bhrule
+   & LM &  &  & \ctwo &  & \cone &  & \cone & \\  \bhrule
+   & SM & \cone & \cone & \cone & \cone & \cone & \cthree &  & \cone \\ \bhrule \bhrule
+
+\multirow{3}{*}{\begin{sideways}$BN_{i, t} $\end{sideways}} & BL & \cone & \cthree & \cone &  &  & \cone & \cthree & \\ \bhrule
+   & LM & \cone &  & \cone & \ctwo &  & \cone & \cone & \ctwo  \\ \bhrule
+   & SM & \ctwo & \cone & \cone &  & \cone & \ctwo & \cone & \ctwo \\ \bhrule
+\end{tabular}
+}
+\vspace{-5pt}
+\caption{Significance codes \crule[isered!90]{0.6\baselineskip}{0.6\baselineskip} 0.01 \crule[isered!65]{0.6\baselineskip}{0.6\baselineskip} 0.05 \crule[isered!30]{0.6\baselineskip}{0.6\baselineskip} 0.1}
+\end{table}
+\vspace{-20pt}
+    \begin{flushright}
+        \hyperlink{Abbreviation}{\beamerbutton{Abbreviations}}                                
+    \end{flushright}
+\end{frame}
+
+
+\begin{frame}
+\label{gkreturn}
+\frametitle{Contemporaneous - Returns - Fractions}
+\setlength{\abovecaptionskip}{15pt}
+\begin{table}
+\center
+\scalebox{0.95}{
+\renewcommand{\arraystretch}{1.3}
+\hspace*{-30pt}
+\begin{tabular}{l?l?C?C?C?C?C?C?C?C?} 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \sector{CD} & \sector{CS} & \sector{EN} & \sector{FI} & \sector{HC} & \sector{IN} & \sector{IT} & \sector{MA} \\  
+
+\multirow{3}{*}{\begin{sideways}$PF_{i, t}$\end{sideways}} & BL & \cone & \ctwo & \ctwo & \cthree &  & \cone & \cone & \ctwo \\ \bhrule
+  & LM & \cone & \cone &  & \ctwo & \cthree & \cone & \ctwo & \cthree \\  \bhrule
+  & SM & \cone & \cone & \cone & \cone & \cthree & \cone & \cone & \cone \\ \bhrule \bhrule
+
+\multirow{3}{*}{\begin{sideways}$PN_{i, t} $\end{sideways}} & BL &  &  & \ctwo & \ctwo &  & \ctwo &  & \cone \\ \bhrule
+   & LM &  &  &  & \cthree & \cone & \cone &  & \\ \bhrule
+   & SM & \ctwo & \cone & \ctwo & \cone &  & \cone &  & \cone \\ \bhrule
+\end{tabular}
+}
+\vspace{-5pt}
+\caption{Significance codes \crule[isered!90]{0.6\baselineskip}{0.6\baselineskip} 0.01 \crule[isered!65]{0.6\baselineskip}{0.6\baselineskip} 0.05 \crule[isered!30]{0.6\baselineskip}{0.6\baselineskip} 0.1}
+\end{table}
+\vspace{-20pt}
+    \begin{flushright}
+        \hyperlink{Abbreviation}{\beamerbutton{Abbreviations}}                                
+    \end{flushright}
+\end{frame}
+
+
+\begin{frame}
+\label{gkreturn2}
+\frametitle{Contemporaneous - Returns - Bullishness}
+\setlength{\abovecaptionskip}{15pt}
+\begin{table}
+\center
+\scalebox{0.95}{
+\renewcommand{\arraystretch}{1.3}
+\hspace*{-30pt}
+\begin{tabular}{l?l?C?C?C?C?C?C?C?C?} 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \sector{CD} & \sector{CS} & \sector{EN} & \sector{FI} & \sector{HC} & \sector{IN} & \sector{IT} & \sector{MA} \\  
+
+\multirow{3}{*}{\begin{sideways}$B_{i, t}$\end{sideways}} & BL & \cone & \cthree &  & \ctwo &  & \cone & \ctwo & \ctwo \\ \bhrule
+   & LM &  \cone &  & \cthree &  &  & \cone &  & \cthree \\  \bhrule
+   & SM & \cone & \cone & \cone & \cone & \ctwo & \cone & \cone & \cone \\ \bhrule \bhrule
+
+\multirow{3}{*}{\begin{sideways}$BN_{i, t} $\end{sideways}} & BL  &  &  &  &  &  &  &  & \cone \\ \bhrule
+   & LM &  &  &  &  & \ctwo &  & \ctwo & \cone  \\ \bhrule
+   & SM &  &  &  &  &  &  &  &  \\ \bhrule
+\end{tabular}
+}
+\vspace{-5pt}
+\caption{Significance codes \crule[isered!90]{0.6\baselineskip}{0.6\baselineskip} 0.01 \crule[isered!65]{0.6\baselineskip}{0.6\baselineskip} 0.05 \crule[isered!30]{0.6\baselineskip}{0.6\baselineskip} 0.1}
+\end{table}
+\vspace{-20pt}
+    \begin{flushright}
+        \hyperlink{Abbreviation}{\beamerbutton{Abbreviations}}                                
+    \end{flushright}
+\end{frame}
+
+
+\begin{frame}
+\label{gkvola3}
+\frametitle{Lagged - Volatility - Fractions}
+\setlength{\abovecaptionskip}{15pt}
+\begin{table}
+\center
+\scalebox{0.95}{
+\renewcommand{\arraystretch}{1.3}
+\hspace*{-30pt}
+\begin{tabular}{l?l?C?C?C?C?C?C?C?C?} 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \sector{CD} & \sector{CS} & \sector{EN} & \sector{FI} & \sector{HC} & \sector{IN} & \sector{IT} & \sector{MA} \\  
+
+\multirow{3}{*}{\begin{sideways}$|B_{i, t-1}|$\end{sideways}} & BL & \cone & \ctwo &  &  &  &  & \cone & \cone\\ \bhrule
+   & LM & \cthree &  & \cone &  & \ctwo &  & \cthree & \cone \\  \bhrule
+   & SM & \cone & \cone & \cone & \cone & \cone & \cone & \cone & \cone \\ \bhrule \bhrule
+
+\multirow{3}{*}{\begin{sideways}$BN_{i, t-1} $\end{sideways}} &BL& \cone & \cone & \cone & \ctwo & \cone & \cone & \ctwo & \cone \\ \bhrule
+   & LM & \cone & \ctwo & \cone & \cone & \ctwo & \cthree & \cone & \cone  \\ \bhrule
+   & SM & \cone & \ctwo & \cone &  & \cone &  & \cone & \ctwo \\ \bhrule
+\end{tabular}
+}
+\vspace{-5pt}
+\caption{Significance codes \crule[isered!90]{0.6\baselineskip}{0.6\baselineskip} 0.01 \crule[isered!65]{0.6\baselineskip}{0.6\baselineskip} 0.05 \crule[isered!30]{0.6\baselineskip}{0.6\baselineskip} 0.1}
+\end{table}
+\vspace{-20pt}
+    \begin{flushright}
+        \hyperlink{Abbreviation}{\beamerbutton{Abbreviations}}                                
+    \end{flushright}
+\end{frame}
+
+
+\begin{frame}
+\label{gkvola4}
+\frametitle{Lagged - Volatility - Bullishness}
+\setlength{\abovecaptionskip}{15pt}
+\begin{table}
+\center
+\scalebox{0.95}{
+\renewcommand{\arraystretch}{1.3}
+\hspace*{-30pt}
+\begin{tabular}{l?l?C?C?C?C?C?C?C?C?} 
+\multicolumn{1}{c}{} & \multicolumn{1}{c}{} & \sector{CD} & \sector{CS} & \sector{EN} & \sector{FI} & \sector{HC} & \sector{IN} & \sector{IT} & \sector{MA} \\  
+
+\multirow{3}{*}{\begin{sideways}$|B_{i, t-1}|$\end{sideways}} & BL &\cone &  &  & \cone &  &  & \cone & \cone \\ \bhrule
+   & LM & \cone &  &  & \cone &  &  & \cone & \cone \\  \bhrule
+   & SM & \cthree & \cone &  &  & \cone & \cone &  & \ctwo \\ \bhrule \bhrule
+
+\multirow{3}{*}{\begin{sideways}$BN_{i, t-1} $\end{sideways}} &BL& \cone & \cone & \cone & \ctwo &  & \cone & \cone & \cone \\ \bhrule
+   & LM & \cone & \ctwo & \cone & \cone &  & \cone & \cone & \cone  \\ \bhrule
+   & SM & \cone & \cthree & \cone & \ctwo & \cone &  & \ctwo & \cone \\ \bhrule
+\end{tabular}
+}
+\vspace{-5pt}
+\caption{Significance codes \crule[isered!90]{0.6\baselineskip}{0.6\baselineskip} 0.01 \crule[isered!65]{0.6\baselineskip}{0.6\baselineskip} 0.05 \crule[isered!30]{0.6\baselineskip}{0.6\baselineskip} 0.1}
+\end{table}
+\vspace{-20pt}
+    \begin{flushright}
+        \hyperlink{Abbreviation}{\beamerbutton{Abbreviations}}                                
+    \end{flushright}
+\end{frame}
+
+
