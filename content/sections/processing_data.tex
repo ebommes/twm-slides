@@ -17,6 +17,33 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Part of Speech Tagging}
+\begin{itemize}
+    \item More than nouns, verbs, adjectives
+        \begin{itemize}
+        \item Penn Treebank: 45 tags
+        \item Brown Corpus: 87 tags
+        \end{itemize}
+        \end{itemize}
+\begin{itemize}
+    \item Useful for
+        \begin{itemize}
+        \item Information retrieval
+        \item Word-sense disambiguation
+        \item Shallow parsing of names and other named entities
+        \end{itemize}
+     \end{itemize}
+     \begin{itemize}
+    \item Math Tagging, \textcolor{iseblue}{Kristianto et al (2012)}
+         \begin{itemize}
+    \item Extract mathematical definitions
+    \item Pattern matching and machine learning
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Example: Beer Review}
@@ -67,7 +94,7 @@
 
 
 \begin{frame}
-    \frametitle{Verbs}
+    \frametitle{\textcolor{iseblue}{Verbs}}
     \label{review_verbs}
 \begin{spacing}{1.6}
     An OK \textbf{\textcolor{isered}{lager}}. \textbf{\textcolor{isered}{Light}}, crisp, but \textbf{\textcolor{isered}{nothing}} special. \textbf{\textcolor{iseblue}{Stacked}} against the great \textbf{\textcolor{isered}{pilsners}} of the \textbf{\textcolor{isered}{world}} or similar \textbf{\textcolor{isered}{offerings}}, this \textbf{\textcolor{isered}{beer}} \textbf{\textcolor{iseblue}{is}} mediocre. But still solid enough to \textbf{\textcolor{iseblue}{put}} it \textbf{\textcolor{isered}{head}} and \textbf{\textcolor{isered}{shoulders}} above any \textbf{\textcolor{isered}{macro}}.
@@ -86,7 +113,7 @@
 \end{frame}
 
 \begin{frame}
-    \frametitle{Adjectives}
+    \frametitle{\textcolor{isegreen}{Adjectives}}
 \begin{spacing}{1.6}
     An \textbf{\textcolor{isegreen}{OK}} \textbf{\textcolor{isered}{lager}}. \textbf{\textcolor{isered}{Light}}, \textbf{\textcolor{isegreen}{crisp}}, but \textbf{\textcolor{isered}{nothing}} \textbf{\textcolor{isegreen}{special}}. \textbf{\textcolor{iseblue}{Stacked}} against the \textbf{\textcolor{isegreen}{great}} \textbf{\textcolor{isered}{pilsners}} of the \textbf{\textcolor{isered}{world}} or \textbf{\textcolor{isegreen}{similar}} \textbf{\textcolor{isered}{offerings}}, this \textbf{\textcolor{isered}{beer}} \textbf{\textcolor{iseblue}{is}} \textbf{\textcolor{isegreen}{mediocre}}. But still \textbf{\textcolor{isegreen}{solid}} enough to \textbf{\textcolor{iseblue}{put}} it \textbf{\textcolor{isered}{head}} and \textbf{\textcolor{isered}{shoulders}} above any \textbf{\textcolor{isered}{macro}}.
 \end{spacing}
@@ -101,6 +128,30 @@
 \item How is something? Crisp
 \end{itemize}
 \end{frame}
+
+
+
+\begin{frame}
+    \frametitle{All Words}
+\begin{figure}[htb]
+\includegraphics[scale=0.55,left]{img/figures/bar_words}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Nouns}
+\begin{figure}[htb]
+\includegraphics[scale=0.55,left]{img/figures/bar_nouns}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Adjectives}
+\begin{figure}[htb]
+\includegraphics[scale=0.55,left]{img/figures/bar_adj}
+\end{figure}
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Text Normalization: Basics}
@@ -166,3 +217,4 @@ What is the most important aspect of the domain?
 \item Additional filtering for noun, adjective, verb combinations
 \end{itemize}
 \end{frame}
+
