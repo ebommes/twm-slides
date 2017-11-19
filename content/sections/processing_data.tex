@@ -4,17 +4,47 @@
 \begin{frame}
     \frametitle{Processing}
     \begin{itemize}
+        \item Always needed in text mining
+        \item Vast improvement of model
+    \end{itemize}
+
+    \begin{itemize}
         \item Often depends on theoretical model
         \begin{itemize}
             \item Time series models for stock returns
-            \item Example 2
         \end{itemize}
+    \end{itemize}
+    \begin{itemize}
         \item Just a side note in scientific articles
         \begin{itemize}
             \item Well established ``gold standard'' processing for many domains
             \item No scientific news value
         \end{itemize}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Beer Review}
+    \label{beer_review}
+\begin{spacing}{1.6}
+    An OK lager. Light, crisp, but nothing special. Stacked against the great pilsners of the world or similar offerings, this beer is mediocre. But still solid enough to put it head and shoulders above any macro. 
+\end{spacing}
+\begin{flushright}
+\hyperlink{text_all}{\beamerbutton{Stats for all reviews}}
+\end{flushright}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Text Normalization: Basics}
+\begin{spacing}{1.6}
+    [ (an, ok lager), (light, crisp, but, nothing, special), (stacked, against, the, great, pilsners, of, the, world, or, similar, offerings, this, beer, is, mediocre), (but, still, solid, enough, to, put, it, head, and, shoulders, above, any, macro) ]
+\end{spacing}
+\vspace{10pt}
+\begin{itemize}
+\item Lowercase
+\item Removal of non alphabetic characters
+\item Word and sentence tokenization
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -46,16 +76,8 @@
 
 
 \begin{frame}
-    \frametitle{Example: Beer Review}
-\begin{spacing}{1.6}
-    An OK lager. Light, crisp, but nothing special. Stacked against the great pilsners of the world or similar offerings, this beer is mediocre. But still solid enough to put it head and shoulders above any macro. 
-\end{spacing}
-
-\end{frame}
-
-
-\begin{frame}
     \frametitle{Nouns}
+    \label{review_nouns}
 \begin{spacing}{1.6}
     An OK \textbf{\textcolor{isered}{lager}}. \textbf{\textcolor{isered}{Light}}, crisp, but \textbf{\textcolor{isered}{nothing}} special. Stacked against the great \textbf{\textcolor{isered}{pilsners}} of the \textbf{\textcolor{isered}{world}} or similar \textbf{\textcolor{isered}{offerings}}, this \textbf{\textcolor{isered}{beer}} is mediocre. But still solid enough to put it \textbf{\textcolor{isered}{head}} and \textbf{\textcolor{isered}{shoulders}} above any \textbf{\textcolor{isered}{macro}}.
 \end{spacing}
@@ -69,6 +91,7 @@
 \begin{itemize}
 \item Which topic?
 \item Which beer category? Lager, pilsner
+\item \hyperlink{stats_nouns}{\beamerbutton{Stats for all Nouns}}
 \end{itemize}
 \end{frame}
 
@@ -88,6 +111,7 @@
 \begin{itemize}
 \item Which topic? Beer
 \item Which beer category? Lager, pilsner
+\item \hyperlink{stats_nouns}{\beamerbutton{Stats for all Nouns}}
 \end{itemize}
 
 \end{frame}
@@ -114,6 +138,7 @@
 
 \begin{frame}
     \frametitle{\textcolor{isegreen}{Adjectives}}
+    \label{review_adjectives}
 \begin{spacing}{1.6}
     An \textbf{\textcolor{isegreen}{OK}} \textbf{\textcolor{isered}{lager}}. \textbf{\textcolor{isered}{Light}}, \textbf{\textcolor{isegreen}{crisp}}, but \textbf{\textcolor{isered}{nothing}} \textbf{\textcolor{isegreen}{special}}. \textbf{\textcolor{iseblue}{Stacked}} against the \textbf{\textcolor{isegreen}{great}} \textbf{\textcolor{isered}{pilsners}} of the \textbf{\textcolor{isered}{world}} or \textbf{\textcolor{isegreen}{similar}} \textbf{\textcolor{isered}{offerings}}, this \textbf{\textcolor{isered}{beer}} \textbf{\textcolor{iseblue}{is}} \textbf{\textcolor{isegreen}{mediocre}}. But still \textbf{\textcolor{isegreen}{solid}} enough to \textbf{\textcolor{iseblue}{put}} it \textbf{\textcolor{isered}{head}} and \textbf{\textcolor{isered}{shoulders}} above any \textbf{\textcolor{isered}{macro}}.
 \end{spacing}
@@ -126,43 +151,21 @@
 \begin{itemize}
 \item What is the opinion? OK, solid, (nothing) special, mediocre
 \item How is something? Crisp
+\item \hyperlink{stats_adjectives}{\beamerbutton{Stats for all Adjectives}}
 \end{itemize}
 \end{frame}
 
-
-
 \begin{frame}
-    \frametitle{All Words}
-\begin{figure}[htb]
-\includegraphics[scale=0.55,left]{img/figures/bar_words}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Nouns}
-\begin{figure}[htb]
-\includegraphics[scale=0.55,left]{img/figures/bar_nouns}
-\end{figure}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Adjectives}
-\begin{figure}[htb]
-\includegraphics[scale=0.55,left]{img/figures/bar_adj}
-\end{figure}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Text Normalization: Basics}
+    \frametitle{Text Filtering: Noun Chunks}
 \begin{spacing}{1.6}
-    [ (an, ok lager), (light, crisp, but, nothing, special), (stacked, against, the, great, pilsners, of, the, world, or, similar, offerings, this, beer, is, mediocre), (but, still, solid, enough, to, put, it, head, and, shoulders, above, any, macro) ]
+    (An, OK, lager), (Light), (the, great pilsners) \\
+    (the, world), (similar, offering), (this, beer) \\
+    (it), (any, macro)
 \end{spacing}
 \vspace{10pt}
 \begin{itemize}
-\item Lowercase
-\item Removal of non alphabetic characters
-\item Word and sentence lemmatization
+\item Parse dependencies of nouns
+\item Additional filtering for noun, adjective, verb combinations
 \end{itemize}
 \end{frame}
 
@@ -205,16 +208,115 @@ What is the most important aspect of the domain?
 \end{frame}
 
 \begin{frame}
-    \frametitle{Text Filtering: Noun Chunks}
-\begin{spacing}{1.6}
-    (An, OK, lager), (Light), (the, great pilsners) \\
-    (the, world), (similar, offering), (this, beer) \\
-    (it), (any, macro)
-\end{spacing}
-\vspace{10pt}
+    \frametitle{Word Sense Disambiguation}
+
+\begin{center}
+\raisebox{-7pt}{\includegraphics[height=0.8cm]{img/icons/tank_1}}  $\,\!\quad$ or $\,\!\quad$  \raisebox{-7pt}{\includegraphics[height=0.8cm]{img/icons/tank_2}} 
+\end{center}
+
 \begin{itemize}
-\item Parse dependencies of nouns
-\item Additional filtering for noun, adjective, verb combinations
+\item Dictionary approach by \textcolor{iseblue}{Lesk (1986)}
+\begin{itemize}
+\item Assumption: common topic for words in same neighborhood
+\item Choose sense with largest number of counts
 \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item WordNet (Princeton)
+\begin{itemize}
+\item Groups words into sets of synonyms
+\item \textcolor{iseblue}{\href{http://wordnetweb.princeton.edu/perl/webwn?s=tank&sub=Search+WordNet&o2=&o0=1&o8=1&o1=1&o7=&o5=&o9=&o6=&o3=&o4=&h=}{Demo}}
+\end{itemize}
+\end{itemize}
+\begin{itemize}
+\item Supervised methods
+\begin{itemize}
+\item Rely on manually labeled training data
+\item New words are problematic
+\end{itemize}
+\end{itemize}
+
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Named Entity Recognition (NER)}
+\begin{itemize}
+\item Persons, locations, organizations
+\end{itemize}
+
+\begin{itemize}
+\item Stanford NER
+\begin{itemize}
+\item Linear chain conditional random field sequence model
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item DBpedia Spotlight
+\begin{itemize}
+\item Entity recognition with DBpedia
+\item \textcolor{iseblue}{\href{http://demo.dbpedia-spotlight.org/}{Demo}}
+\end{itemize}
+\end{itemize}
+
+\begin{itemize}
+\item DBpedia
+\begin{itemize}
+\item Structured content from Wikipedia
+\item Started at FU Berlin and U Leipzig
+\end{itemize}
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{NLP Toolkits}
+\includegraphics[scale=0.15]{img/logos/python}
+        \begin{itemize}
+        \item NLTK, originated at U of Pennsylvania
+        \item TextBlob, simplified text processing
+        \item SpaCy, industrial-strength NLP
+    \end{itemize}
+
+\vspace{15pt}
+\hspace*{0.1cm}
+\includegraphics[scale=0.05]{img/logos/java.png}
+\vspace{-2pt}
+    \begin{itemize}
+        \item OpenNLP, Apache
+        \item CoreNLP, Stanford
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{For Moneybags}
+
+    \begin{itemize}
+        \item Data
+    \begin{itemize}
+        \item \textcolor{iseblue}{\href{https://www.ravenpack.com/}{RavenPack}}
+        \item \textcolor{iseblue}{\href{https://sifter.texifter.com/}{Sifter}}
+    \end{itemize}
+    \end{itemize}
+\vspace{10pt}
+    \begin{itemize}
+        \item NLP, categorization, sentiment
+    \begin{itemize}
+        \item \textcolor{iseblue}{\href{hhttps://cloud.google.com/natural-language/}{Google Cloud Natural Language}}
+        \item \textcolor{iseblue}{\href{https://discovery-news-demo.mybluemix.net/?cm_mc_uid=56760058191115105959982&cm_mc_sid_50200000=1511105054&cm_mc_sid_52640000=1511105054}{Watson Discovery}}
+    \end{itemize}
+    \end{itemize}
+
+\vspace{10pt}
+    \begin{itemize}
+        \item Paid crowd work platforms
+    \begin{itemize}
+        \item \textcolor{iseblue}{\href{https://requester.mturk.com/case_studies}{Amazon’s Mechanical Turk}}
+        \item \textcolor{iseblue}{\href{https://www.crowdflower.com/}{CrowdFlower}}
+    \end{itemize}
+    \end{itemize}
+
+\end{frame}

@@ -5,21 +5,33 @@
 \begin{frame}
     \frametitle{Obtaining}
     \begin{itemize}
-        \item Ready to use data sets
+        \item Ready to use
         \begin{itemize}
-            \item Gold standard corpora
-            \item Classification: Reuters Newswire, Twenty Newsgroups, Youtube Spam, ...
-            \item Sentiment: reviews from Amazon, TripAdvisor, Rotten Tomatoes, ...
+            \item Gold standard corpora (GSC)
+            \vspace{-5pt}
+            \item Classification: \textcolor{iseblue}{\href{http://qwone.com/~jason/20Newsgroups/}{20 Newsgroups}} 
+            \hspace*{-2pt}\href{https://archive.ics.uci.edu/ml/datasets/reuters-21578+text+categorization+collection}{\raisebox{-11pt}{\includegraphics[height=1cm]{img/logos/reuters}}}\hspace*{-2pt}
+            \href{https://archive.ics.uci.edu/ml/datasets/YouTube+Spam+Collection}{\raisebox{-8pt}{\includegraphics[height=0.8cm]{img/logos/youtube.jpg}}}
+            \vspace{-7pt}
+            \item Sentiment: \hspace*{-9pt}
+            \href{https://snap.stanford.edu/data/web-Amazon.html}{\raisebox{-11pt}{\includegraphics[height=0.8cm]{img/logos/amazon.jpg}}}\hspace*{-3pt}
+            \href{http://kavita-ganesan.com/entity-ranking-data}{\raisebox{-5pt}{\includegraphics[height=0.6cm]{img/logos/tripadvisor.jpg}}}\hspace*{-9pt}
         \end{itemize}
+        \end{itemize}
+        \begin{itemize}
         \item APIs
         \begin{itemize}
-            \item Twitter, New York Times, Guardian
-            \item Only in real time?
+            \item \href{https://developer.twitter.com/en.html}{\raisebox{-10pt}{\includegraphics[height=0.8cm]{img/logos/twitter.png}}}\hspace*{6pt}
+            \href{https://developer.nytimes.com/}{\raisebox{-6pt}{\includegraphics[height=0.5cm]{img/logos/nyt.png}}}\hspace*{8pt}
+            \href{http://open-platform.theguardian.com/}{\raisebox{-4pt}{\includegraphics[height=0.5cm]{img/logos/guardian.jpg}}}\hspace*{6pt}
+            \item Sometimes no archive, request limitations
         \end{itemize}
+        \end{itemize}
+        \begin{itemize}
         \item Crawling / Scraping
         \begin{itemize}
-            \item Data for (almost) any domain of interest
-            \item Legal? Terms of Service, robots.txt
+            \item Data for any domain of interest
+            \item Legality?
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -27,24 +39,33 @@
 
 \begin{frame}
     \frametitle{Gold Standard Corpora}
-    \textcolor{iseblue}{Wissler et al. (2014)}
     \begin{itemize}
-        \item Standard collections for training and evaluation of algorithms
-        \item Manual annotations and more structure thain plain text
+        \item For training and evaluation of algorithms
+    \end{itemize}
     \begin{itemize}
-        \item Syntactical information, lexical knowledge, semantic associations
+        \item Manual annotations
+    \begin{itemize}
+        \item Syntax, semantics lexical knowledge
         \item E.g. entities, grammatical structures
     \end{itemize}
-    \item Multiple experts view the data independently
+    \end{itemize}
+    \begin{itemize}
+    \item Multiple experts
     \begin{itemize}
         \item Inter-annotator agreement
-        \item Creation is time-consuming and expensive
+        \item Time-consuming and expensive
     \end{itemize}
+    \end{itemize}
+    \begin{itemize}
     \item Example: Penn Treebank
     \begin{itemize}
-        \item 4.5 million English words, GSC for syntactical tagging
+        \item 4.5 million English words
+        \item GSC for syntactical tagging
     \end{itemize}
     \end{itemize}
+\begin{flushright}
+    \textcolor{iseblue}{Wissler et al. (2014)}
+\end{flushright}
 \end{frame}
 
 \begin{frame}
@@ -55,50 +76,71 @@
         \item 1851 until today
         \item Headlines, abstracts, first paragraph, meta information
     \end{itemize}
-    \item Book and movie reviews
     \item Semantics
     \begin{itemize}
         \item People, places, organizations
     \end{itemize}
+    \item Book and movie reviews
     \item Geo
     \end{itemize}
+    \vspace{10pt}
+    {
+    \begin{center}
+    \LARGE \bf
+    \color{isegreen} Example: \href{http://localhost:8888/notebooks/live_examples/nyt_api.ipynb}{NYT API}
+    \end{center}
+    }
 \end{frame}
 
-\frame[plain]{
-    \center \LARGE \bf
-    \color{isegreen} Example: \href{http://localhost:8888/notebooks/live_examples/nyt_api.ipynb}{NYT API}
-}
 
 \begin{frame}
     \frametitle{Crawling and Scraping}
+
+\begin{minipage}[c]{0.7\textwidth}
 \begin{itemize}
     \item Crawling
     \begin{itemize}
-        \item Retrieves any information
-        \item Follows any link
+        \item Any information
+        \item Follows links
         \item General information extraction
     \end{itemize}
 \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.2\textwidth}
+\hspace*{-20pt}
+\includegraphics[scale=0.06]{img/icons/spider.png}
+\end{minipage}
+\medskip \medskip \medskip
 
+\begin{minipage}[c]{0.6\textwidth}
 \begin{itemize}
     \item Scraper
     \begin{itemize}
-        \item Retrieves information from specific page
-        \item Specific information extraction
+        \item Specific information
+        \item Specific web pages
         \item Easy to obtain high quality data
     \end{itemize}
 \end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[c]{0.3\textwidth}
+\includegraphics[scale=0.04]{img/icons/scraper.jpg}
+\end{minipage}
+
 \end{frame}
+
+
 
 \subsection{Legality of Web Scraping}
 \begin{frame}
     \frametitle{Legality of Web Scraping}
 
 \begin{itemize}
-    \item It is public anyway / Google does it
+    \item It is public / Google does it
     \begin{itemize}
-    \item Added value by search engines
-    \item What about log in systems, paywalls, ...?
+    \item Search engines add value
+    \item Log in systems, paywalls, ...?
     \end{itemize}
 \end{itemize}
 
@@ -113,7 +155,7 @@
 \begin{itemize}
     \item Technicalities
     \begin{itemize}
-    \item Humans don't access thousands of pages, bandwidth usage
+    \item Bandwidth usage
     \item Denial-of-service (DoS) attack
     \end{itemize}
 \end{itemize}
@@ -150,19 +192,18 @@
 
 \begin{frame}
     \frametitle{United States}
-Pro \\
+\color{isegreen}{\textbf{Pro}} \\
 \begin{itemize}
     \item Web data is public, should be accessible
-    \item First Amendment protects information gathering
     \item Unfair market power of Facebook, Google, LinkedIn, ...
+    \item First Amendment protects information gathering
 \end{itemize}
 \vspace{8pt}
-Contra \\
+\color{isered}{\textbf{Contra}} \\
 \begin{itemize}
     \item Copyright infringement
     \item Breach of contract
-    \item Violation of the Computer Fraud and Abuse Act (CFAA), 1986 \\
-        $\quad \;$forbids unauthorized access to some computers
+    \item Violation of the Computer Fraud and Abuse Act (CFAA), 1986
     \item Trespass to chattels
 \end{itemize}
 \end{frame}
@@ -181,7 +222,7 @@ Laurence Tribe, Harvard law professor
 \end{flushright}
 \vspace{10pt}
 \begin{itemize}
-    \item hiQ - startup predicting who is when quitting their job
+    \item hiQ predicts who is when quitting their job
     \item LinkedIn: CFAA violation, hiQ: blocked
     \item LinkedIn ordered to give access to public profiles
 \end{itemize}
@@ -201,8 +242,8 @@ Laurence Tribe, Harvard law professor
              \textbf{Aaron Swartz} 
              \begin{itemize}
     \item Harvard research fellow
-    \item Automatic download of articles from JSTOR
-    \item Download via laptop in a closet at MIT
+    \item Automatic download of JSTOR articles
+    \item Laptop in restricted closet at MIT
     \item No civil law suit by MIT and JSTOR
     \item Federal charges: wire fraud, CFAA violations
     \item Possible penalty of \$1 million and 35 years in prison
@@ -214,25 +255,21 @@ Unclear outcome, suicide on January 11, 2013
 \end{tabular}   
 \end{frame}
 
-\begin{frame}
-    \frametitle{Good Manners and Ethics}
-\begin{itemize}
-    \item Data as a product
-    \item Cost of bandwidth
-    \item Rapid requests slow services for real humans
-    \item robots.txt
-\end{itemize}
+\begin{frame}[plain]
+\vspace{-82pt}
+\hspace*{-32pt}
+    \includegraphics[height=\paperheight]{img/figures/cap_verde}
+\vspace{-9cm}
+\hspace*{5.5cm} \textcolor{isered}{\Large \textbf{Bright Side}}\\[0.6\baselineskip]
+\hspace*{5.5cm} Cap Verde is beautiful and \\[0.2\baselineskip]
+\hspace*{5.5cm} does not extradite
+\vfill
 \end{frame}
 
-\begin{frame}
-    \frametitle{Google's robots.txt}
-\begin{figure}[htb]
-\includegraphics[scale=0.27,left]{img/figures/google_robots}
-\end{figure}
-\end{frame}
 
 \begin{frame}
-    \frametitle{Ethical Scraping for Academia}
+\frametitle{Ethical Scraping for Academia}
+\label{manners}
 \begin{itemize}
     \item Technical
     \begin{itemize}
@@ -240,6 +277,7 @@ Unclear outcome, suicide on January 11, 2013
     \item Appear as a bot, not as a human
     \item Provide user agent string with contact data
     \item Decreased rate of requests
+    \item Check robots.txt $\,$ \hyperlink{robots}{\beamerbutton{Google's robots.txt}}
     \end{itemize}
     \end{itemize}
     \vspace{5pt}

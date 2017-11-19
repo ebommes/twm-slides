@@ -3,83 +3,114 @@
 \section{Sentiment Classification}
 
 \begin{frame}
-\frametitle{Evaluation Processing}
+\frametitle{Sentiment Classification}
+\begin{itemize}
+    \item Texts not always factual
+    \item Sentiment, polarity, subjectivity, opinion, attitude
+    \end{itemize}
+    \begin{itemize}
+    \item Can we
+    \begin{itemize}
+        \item classify the rating of a product review?
+        \item use news to predict stock movements?
+        \item predict election results based on social media?
+    \end{itemize}
+    \end{itemize}
+    \begin{itemize}
+    \item Approaches
+    \begin{itemize}
+        \item Lexicon based
+        \item Supervised learning
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Setup}
+\begin{itemize}
+    \item 2000 reviews with highest and lowest ratings, respectively
+    \item Language Processing
+    \begin{itemize}
+        \item Simple negation handling (not good: good\_not)
+        \item Lemmatization: keep nouns, adjectives and verbs
+        \item Noun Chunks, 1-grams and 2-grams
+    \end{itemize}
+\end{itemize}
+\begin{itemize}
+    \item Dimension Reduction
+    \begin{itemize}
+        \item 46,208 unique terms
+        \item LDA with 100 Topics
+    \end{itemize}
+\end{itemize}
+\begin{itemize}
+    \item Modeling
+    \begin{itemize}
+        \item Support Vector Machines
+        \item Kernels: linear, polynomial, sigmoid, radial basis function
+    \end{itemize}  
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Evaluation}
+\begin{itemize}
+    \item Accuracy training set: 0.857
+    \item Accuracy validation set: 0.871
+    \item Confusion matrix validation set:
+\end{itemize}
 \vspace{-2pt}
 {
 \renewcommand{\arraystretch}{1.5}
 \setlength{\tabcolsep}{.8em}
 \begin{lvbtab}{ht}
 \centering
-\begin{tabular}{l|S[table-format=3.0]S[table-format=3.0,detect-weight]|S[table-format=3.0,detect-weight]S[table-format=4.0,detect-weight]}
+\begin{tabular}{l|S[table-format=3.0]S[table-format=3.0,detect-weight]}
   \hline
 \hline
-Pred& \multicolumn{2}{c|}{Unprocessed} & \multicolumn{2}{c}{Processed} \\
 
-\multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{}} &
-\multicolumn{1}{c}{-1}   &
-\multicolumn{1}{c|}{1}  &
-\multicolumn{1}{c}{-1}  &
-\multicolumn{1}{c}{1}   \\ 
+\multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{Pred}} &
+\multicolumn{1}{c}{Negative}   &
+\multicolumn{1}{c}{Positive}    \\ 
   \hline
--1    & 677  & 723  & 725  &  675  \\
-\;1   & 498  & 902  & 307  & 1093  \\
-%Total & 1175 & 1625 & 1032 & 1768 & 2800 \\
-Accuracy & \multicolumn{2}{c|}{0.56} & \multicolumn{2}{c}{0.65}\\
-Recall & \multicolumn{1}{c}{0.58} & \multicolumn{1}{c|}{0.56} & \multicolumn{1}{c}{0.70} & \multicolumn{1}{c}{0.62}  \\
-Precision & \multicolumn{1}{c}{0.48} & \multicolumn{1}{c|}{0.64} & \multicolumn{1}{c}{0.52} & \multicolumn{1}{c}{0.78}  \\
+Negative    & 842  & 139   \\
+Positive   & 116  & 883   \\
 \hline
 \hline
 \end{tabular}
-%\caption{Confusion Matrix - Supervised Learning, estimated with Oversampling and evaluated on total Sample} 
 \end{lvbtab}
 }
 \end{frame}
 
-
 \begin{frame}
-\frametitle{Evaluation Pipeline}
+\frametitle{Lexical Projection with BL}
+\begin{itemize}
+    \item Beats random classification
+    \item Not surprisingly, worse than supervised approach
+    \item Accuracy: 0.603
+    \item Confusion matrix validation set:
+\end{itemize}
 \vspace{-2pt}
 {
 \renewcommand{\arraystretch}{1.5}
 \setlength{\tabcolsep}{.8em}
 \begin{lvbtab}{ht}
 \centering
-\begin{tabular}{l|S[table-format=4.0]S[table-format=4.0,detect-weight]|S[table-format=4.0,detect-weight]S[table-format=4.0,detect-weight]}
+\begin{tabular}{l|S[table-format=3.0]S[table-format=3.0,detect-weight]}
   \hline
 \hline
-Pred& \multicolumn{2}{c|}{Unprocessed} & \multicolumn{2}{c}{Processed} \\
 
-\multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{}} &
-\multicolumn{1}{c}{-1}   &
-\multicolumn{1}{c|}{1}  &
-\multicolumn{1}{c}{-1}  &
-\multicolumn{1}{c}{1}   \\ 
+\multicolumn{1}{c|}{\diagbox[width=5.5em]{True}{Pred}} &
+\multicolumn{1}{c}{Negative}   &
+\multicolumn{1}{c}{Positive}    \\ 
   \hline
--1    & 1304  & 96  & 1274  &  126  \\
-\;1   & 70  & 1330  & 94  & 1306  \\
-%Total & 1175 & 1625 & 1032 & 1768 & 2800 \\
-Accuracy & \multicolumn{2}{c|}{0.94} & \multicolumn{2}{c}{0.92}\\
-Precision & \multicolumn{1}{c}{0.93} & \multicolumn{1}{c|}{0.95} & \multicolumn{1}{c}{0.91} & \multicolumn{1}{c}{0.93}  \\
-Recall & \multicolumn{1}{c}{0.95} & \multicolumn{1}{c|}{0.93} & \multicolumn{1}{c}{0.93} & \multicolumn{1}{c}{0.91}  \\
+Negative    & 1023  & 1977   \\
+Positive   & 403  & 2597   \\
 \hline
 \hline
 \end{tabular}
-%\caption{Confusion Matrix - Supervised Learning, estimated with Oversampling and evaluated on total Sample} 
 \end{lvbtab}
 }
-\end{frame}
 
-\section{Sentiment Classification}
-
-
-
-\begin{frame}
-    \frametitle{Sentiment Distribution}
-    \begin{figure}[htb]
-        \begin{center}
-            \includegraphics[scale=0.7]{img/figures/density}
-        \end{center}
-\caption{Estimated Densities of {\color{iseblue} Beer Ratings} and {\color{gray} Simulated Normal Distribution}}
-    \end{figure}
 
 \end{frame}

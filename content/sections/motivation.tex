@@ -2,17 +2,75 @@
 \section[intro]{Motivation}
 
 \begin{frame}
-    \frametitle{One fits All?}
+    \frametitle{Rise of Unstructured Data}
+
+\begin{center}
+\raisebox{-7pt}{\includegraphics[height=0.8cm]{img/icons/content}}  $\,\!\quad$ instead of $\,\!\quad$  \raisebox{-7pt}{\includegraphics[height=0.8cm]{img/icons/table}} 
+\end{center}
+
+\begin{itemize}
+    \item Text, speech, images, video
+\end{itemize}
+\begin{itemize}
+    \item \textcolor{iseblue}{Merrill Lynch (1998)}: 80 - 90\% of data is unstructured
+\end{itemize}
+
+\begin{itemize}
+    \item \textcolor{iseblue}{Gantz and Reinsel (2012)}
     \begin{itemize}
-    \item How to obtain data?
-    \item How to process data?
-    \item How to model data?
-    \item How to interpret results?
+        \item $<$ 1\% of data is analyzed
+        \item 40 zettabytes in 2020 (1 ZB = 1 billion TB)
     \end{itemize}
-    Depends on the domain and the question.
+\end{itemize}
+
+\begin{itemize}
+    \item Implicit structure
+    \begin{itemize}
+        \item Text: punctuation, part of speech
+        \item Images: coordinates, colors
+    \end{itemize}
+\end{itemize}
+
 \end{frame}
 
+\begin{frame}[plain]
+\hspace*{-32pt}
+    \includegraphics[height=\paperheight]{img/figures/data_never_sleeps}
+\vspace{-40pt}
+\begin{flushright}
+Source \\
+\textcolor{iseblue}{\href{https://www.domo.com/learn/data-never-sleeps-5?aid=ogsm072517_1&sf100871281=1}{domo.com}}
+\end{flushright}
+\end{frame}
 
+\begin{frame}
+    \frametitle{One fits All?}
+\begin{minipage}[t]{\textwidth}
+\begin{minipage}[c]{.3\textwidth}
+        \resizebox{.8\textwidth}{!}{\textcolor{isered}{\textbf{How to}}}
+\end{minipage}%
+\begin{minipage}[c]{.2\textwidth}
+    {\Large
+        obtain \\[0.4\baselineskip]
+        process \\[0.4\baselineskip]
+        model \\[0.4\baselineskip]
+        interpret \\[0.4\baselineskip]
+    }
+\end{minipage}%
+\begin{minipage}[c]{.2\textwidth}
+        \resizebox{.8\textwidth}{!}{\textcolor{isered}{\textbf{texts}}}
+\end{minipage}%
+\begin{minipage}[c]{.2\textwidth}
+        \resizebox{.7\textwidth}{!}{\textcolor{isered}{\textbf{?}}}
+\end{minipage}
+\end{minipage} \\
+\vspace{20pt}
+Depends on domain and question.
+\end{frame}
 
-
-
+\begin{frame}
+    \frametitle{Sentiment Pipeline}
+    \scalebox{0.78}{
+        \input{content/tikz/flowchart.tex}
+    }
+\end{frame}
